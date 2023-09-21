@@ -22,7 +22,7 @@ class HighlightTreeProvider implements TreeDataProvider<HighlightNode> {
     }
 
     public refresh(): any {
-		this._onDidChangeTreeData.fire();
+		this._onDidChangeTreeData.fire(null);
 	}
 
 }
@@ -48,13 +48,25 @@ export class HighlightNode extends TreeItem {
                this.highlight.wholeWord ? 'wholeWord' : 'default' + index
     }
 
-	get tooltip(): string {
-		return `${this.label}-${this.getOpts()}`;
-	}
-
-	get description(): string {
-		return this.getOpts()
-	}
+    // HACK(jdanbrown): Disable these because the vsocde apis changed (or maybe typescript got more strict):
+    //
+    //   src/tree.ts:51:6 - error TS2611: 'tooltip' is defined as a property in class 'TreeItem', but is overridden here in 'HighlightNode' as an accessor.
+    //
+    //   51  get tooltip(): string {
+    //           ~~~~~~~
+    //
+    //   src/tree.ts:55:6 - error TS2611: 'description' is defined as a property in class 'TreeItem', but is overridden here in 'HighlightNode' as an accessor.
+    //
+    //   55  get description(): string {
+    //           ~~~~~~~~~~~
+    //
+    // get tooltip(): string {
+    //     return `${this.label}-${this.getOpts()}`;
+    // }
+    //
+    // get description(): string {
+    //     return this.getOpts()
+    // }
 
 	contextValue = 'highlights';
 
