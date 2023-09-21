@@ -31,18 +31,18 @@ class HighlightConfig {
                 // this color will be used in dark color themes
                 overviewRulerColor: color.dark,
                 backgroundColor: box.dark ? 'inherit' : color.dark,
-                borderColor: color.dark
+                outlineColor: color.dark
             }
             if(!box.dark) 
                 dark.color = '#555555'
             let decorationType = window.createTextEditorDecorationType({
-                borderWidth: '2px',
-                borderStyle: 'solid',
+                outlineWidth: '2px',
+                outlineStyle: 'solid',
                 overviewRulerLane: OverviewRulerLane.Right,
                 light: {
                     // this color will be used in light color themes
                     overviewRulerColor: color.light,
-                    borderColor: color.light,
+                    outlineColor: color.light,
                     backgroundColor: box.light ? 'inherit' : color.light
                 },
                 dark: dark
